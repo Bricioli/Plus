@@ -1,0 +1,26 @@
+<app-login-layout
+  title="Entre na sua conta"
+  primatyBtnText="Entre Agora"
+  secondaryBtnText="Faça seu cadastro"
+>
+  <form [formGroup]="loginForm">
+    <app-primary-input
+      formControlName="email"
+      inputName="email"
+      type="email"
+      label="Email"
+      placeholder="seuemail@email.com"
+    >
+      <img height="20" src="../../../assets/svg/envelope-regular.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="password"
+      type="password"
+      label="Sua Senha"
+    >
+      <img height="20" src="../../../assets/svg/lock-solid.svg" />
+    </app-primary-input>
+    <span>Esqueci minha senha</span>
+  </form>
+</app-login-layout>

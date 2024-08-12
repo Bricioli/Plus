@@ -1,0 +1,17 @@
+@import "../../../styles/variables.scss";
+
+
+form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  margin-bottom: 2rem;
+
+  span{
+    font-size: 0.8rem;
+    text-decoration: underline;
+    color: $terciary-color;
+    text-align: end;
+  }
+}
