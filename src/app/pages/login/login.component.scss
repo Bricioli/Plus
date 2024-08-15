@@ -8,6 +8,10 @@ form{
   gap: 1.8rem;
   margin-bottom: 2rem;
 
+  @media (max-width: 765px){
+    gap: 0.8rem;
+  }
+
   span{
     font-size: 0.8rem;
     text-decoration: underline;

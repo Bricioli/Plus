@@ -29,6 +29,10 @@ main {
     flex-grow: 0.2;
     padding: 0 3rem;
 
+    @media (max-width: 765px) {
+      padding: 0 0;
+    }
+
     img {
       width: 250px;
     }
@@ -42,7 +46,6 @@ main {
     @media (max-width: 765px) {
       .company-logo {
         width: 8rem;
-        margin-top: 3rem;
       }
       img {
         width: 160px;
@@ -62,6 +65,10 @@ main {
       justify-content: center;
       width: 100%;
       gap: 1.7rem;
+
+      @media(max-width: 765px){
+        gap: 0.7rem;
+      }
 
       .divider {
         display: flex;
