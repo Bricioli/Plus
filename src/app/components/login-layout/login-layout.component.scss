@@ -41,10 +41,11 @@ main {
 
     @media (max-width: 765px) {
       .company-logo {
-        width: 160px;
+        width: 8rem;
+        margin-top: 3rem;
       }
       img {
-        width: 200px;
+        width: 160px;
       }
     }
 
