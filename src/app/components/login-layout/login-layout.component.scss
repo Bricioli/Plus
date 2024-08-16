@@ -99,6 +99,10 @@ main {
         padding: 1rem 2rem;
         box-shadow: 0px 8px 12px rgba(2, 98, 177, 0.26);
 
+        &:disabled{
+          opacity: 0.5;
+        }
+
         &.btn-primary {
           background-color: $primary-color;
           color: #fff;

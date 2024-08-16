@@ -1,6 +1,9 @@
 <app-login-layout
   primatyBtnText="Entre Agora"
   secondaryBtnText="Faça seu cadastro"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disabledPrimaryBtn]="!loginForm.valid"
 >
   <form [formGroup]="loginForm">
     <app-primary-input
