@@ -1,0 +1,50 @@
+<app-login-layout
+  title="Faça seu cadastro"
+  primatyBtnText="Realizar cadastro"
+  secondaryBtnText="Entre agora"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disabledPrimaryBtn]="!cadastroForm.valid"
+>
+  <form [formGroup]="cadastroForm">
+    <app-primary-input
+      formControlName="name"
+      inputName="name"
+      type="text"
+      label="Name"
+      placeholder="Adriel Health Plus"
+    >
+      <img height="20" src="../../../assets/svg/user-solid.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="email"
+      inputName="email"
+      type="email"
+      label="Email"
+      placeholder="seuemail@email.com"
+    >
+      <img height="20" src="../../../assets/svg/envelope-regular.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="password"
+      type="password"
+      label="Sua Senha"
+      placeholder="********"
+    >
+      <img height="20" src="../../../assets/svg/lock-solid.svg" />
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="passwordConfirm"
+      inputName="passwordConfirm"
+      type="password"
+      label="Confirme sua senha"
+      placeholder="********"
+
+    >
+      <img height="20" src="../../../assets/svg/lock-solid.svg" />
+    </app-primary-input>
+  </form>
+</app-login-layout>
