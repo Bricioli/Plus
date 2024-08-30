@@ -12,7 +12,7 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'novo-cadastro',
+    path: 'new-user',
     component: cadastroComponent
   }
 ];

@@ -28,13 +28,13 @@ export class LoginComponent {
     private toastService : ToastrService
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      login: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
 
     })
   }
   submit(){
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+    this.loginService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe({
       next: () => this.toastService.success('Login realizado com sucesso'),
       error: () => this.toastService.error('Algo de errado aconteceu, tente novamente mais tarde')
     })
