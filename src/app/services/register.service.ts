@@ -1,4 +1,3 @@
-import { RegisterRespose } from './../types/register-response.type';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -8,10 +7,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RegisterService {
-
+  apiUrl = 'https://backend-plus.vercel.app/'
   constructor(private httpClient : HttpClient) { }
 
   register(name: string, login: string, password : string) {
-    return this.httpClient.post<RegisterRespose>("http://localhost:8000/user" , { name, login, password})
+    return this.httpClient.post(this.apiUrl + "/user" , { name, login, password})
   }
 }

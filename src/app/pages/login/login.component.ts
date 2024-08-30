@@ -35,7 +35,9 @@ export class LoginComponent {
   }
   submit(){
     this.loginService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe({
-      next: () => this.toastService.success('Login realizado com sucesso'),
+      next: (response) => {this.toastService.success('Login realizado com sucesso')
+        this.router.navigate(["home"]);
+      },
       error: () => this.toastService.error('Algo de errado aconteceu, tente novamente mais tarde')
     })
   }

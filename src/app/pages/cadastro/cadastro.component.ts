@@ -44,7 +44,9 @@ export class cadastroComponent {
   }
   submit(){
     this.registerService.register(this.cadastroForm.value.name, this.cadastroForm.value.login, this.cadastroForm.value.password).subscribe({
-      next: () => this.toastService.success('Login realizado com sucesso'),
+      next: (response) => {this.toastService.success('Cadastro realizado com sucesso')
+        this.router.navigate(["home"]);
+      },
       error: () => this.toastService.error('Algo de errado aconteceu, tente novamente mais tarde')
     })
   }
