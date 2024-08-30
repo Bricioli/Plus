@@ -7,7 +7,7 @@ import { tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  apiUrl = 'https://backend-plus.vercel.app/'
+  apiUrl = 'https://backend-plus.vercel.app'
   constructor(private httpClient: HttpClient) { }
 
   login(login: string, password: string) {

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RegisterService {
-  apiUrl = 'https://backend-plus.vercel.app/'
+  apiUrl = 'https://backend-plus.vercel.app'
   constructor(private httpClient : HttpClient) { }
 
   register(name: string, login: string, password : string) {
