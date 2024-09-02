@@ -1,0 +1,21 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon>home</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon>info</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <mat-icon fontIcon="exit_to_app"></mat-icon>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-icon (click)="sidenav.toggle()" fontIcon="menu"></mat-icon>
+  </mat-sidenav-content>
+</mat-sidenav-container>
