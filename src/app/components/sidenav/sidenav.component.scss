@@ -15,6 +15,9 @@
   overflow: auto;
   border: 1px solid #555;
 }
+.mat-drawer-container{
+  background-color: rgb(236, 122, 160, 0.2) !important;
+}
 mat-sidenav-content{
   mat-icon{
     margin: 1.5rem 0 0 1rem;
