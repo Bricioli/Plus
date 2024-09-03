@@ -13,11 +13,12 @@
   width: 300px;
   height: 200px;
   overflow: auto;
-  border: 1px solid #555;
 }
 .mat-drawer-container{
-  background-color: rgb(236, 122, 160, 0.2) !important;
+  background: none !important;
 }
+
+
 mat-sidenav-content{
   mat-icon{
     margin: 1.5rem 0 0 1rem;
@@ -33,7 +34,6 @@ mat-sidenav-content{
 mat-sidenav{
   width: 20rem;
   background-color: $terciary-color;
-  border: none;
 
 
   mat-list{

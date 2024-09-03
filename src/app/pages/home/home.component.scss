@@ -1,15 +1,32 @@
 @import "../../../styles/variables.scss";
 
-.home {
-  margin: 1.5rem 0rem 0rem 0rem;
+section {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  display: flex;
+  gap: 3rem;
+  padding: 0rem 6rem;
 
-  h2 {
-    margin-top: 0.2rem;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: $terciary-color;
+  .home {
+    margin: 1.5rem 0rem 0rem 0rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    h2 {
+      margin-top: 0.2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $terciary-color;
+    }
+  }
+
+  .container {
+    z-index: 10 !important;
+
+    @media (min-width: 768px) {
+      width: 90%;
+    }
   }
 }

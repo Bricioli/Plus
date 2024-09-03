@@ -1,11 +1,10 @@
-<sidenav></sidenav>
-<div class="home">
-  <img
-    src="../favicon.ico"
-    alt="Icone Health Plus"
-    class="icon-health"
-  />
-  <h2>{{ title }}</h2>
-</div>
-<div class="container-fluid"></div>
-
+<sidenav id="sidenav" (click)=adjustHome()> </sidenav>
+<section>
+  <div class="home">
+    <img src="../favicon.ico" alt="Icone Health Plus" class="icon-health" />
+    <h2>{{ title }}</h2>
+  </div>
+  <div id="container" class="container">
+    <table-list></table-list>
+  </div>
+</section>

@@ -15,7 +15,8 @@ export const routes: Routes = [
   },
   {
     path: 'new-user',
-    component: cadastroComponent
+    component: cadastroComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',
