@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { nurseResponse } from '../types/nurse-response.type';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class NursesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  nurses(): Observable<any[]> {
-    return this.httpClient.get<any[]>(this.apiUrl + '/nurse');
+  getNurses(): Observable<nurseResponse[]> {
+    return this.httpClient.get<nurseResponse[]>(this.apiUrl + '/nurse');
   }
 }

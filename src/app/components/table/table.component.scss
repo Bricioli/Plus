@@ -1,3 +1,6 @@
+@import "../../../styles/variables.scss";
+
+
 table {
   width: 100%;
 
@@ -5,7 +8,11 @@ table {
     width: 70% !important;
   }
 }
-
+mat-toolbar{
+  background-color: $terciary-bg;
+  color: $terciary-color;
+  font-weight: bold;
+}
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;
