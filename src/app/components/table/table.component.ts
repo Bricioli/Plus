@@ -70,28 +70,16 @@ const NAMES: string[] = [
   imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
 })
 export class TableList implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'worked hours', 'to receive'];
-  dataSource: MatTableDataSource<UserData>;
-  dataSource2: MatTableDataSource<UserData2>;
+  displayedColumns: string[] = ['name', 'worked', 'receive'];
+  dataSource!: MatTableDataSource<UserData>;
 
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
 
   constructor(private nursesService: NursesService) {
-
-    const users = Array.from({length: 10}, (_, k) => createNewUser(k + 1));
-    const nurses = this.loadNursesData();
-    const nurses2 = this.fetchNurses();
-    console.log(nurses)
-    console.log(nurses2)
-    console.log(users)
-    this.dataSource = new MatTableDataSource<UserData>();
-
-    this.dataSource2 = new MatTableDataSource<UserData2>();
-
+    // this.dataSource = new MatTableDataSource<UserData>()
+    this.loadNursesData();
   }
   loadNursesData() {
     this.fetchNurses().then(dataSource => {
@@ -112,8 +100,8 @@ export class TableList implements AfterViewInit {
     }
   }
   ngAfterViewInit() {
+    console.log(this.dataSource)
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -127,17 +115,17 @@ export class TableList implements AfterViewInit {
 }
 
 /** Builds and returns a new User. */
-function createNewUser(id: number): UserData2 {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
+// function createNewUser(id: number): UserData2 {
+//   const name =
+//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
+//     ' ' +
+//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
+//     '.';
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-}
+//   return {
+//     id: id.toString(),
+//     name: name,
+//     progress: Math.round(Math.random() * 100).toString(),
+//     fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
+//   };
+// }
