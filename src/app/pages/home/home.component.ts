@@ -12,13 +12,7 @@ import { TableList } from '../../components/table/table.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  title = 'Health Plus'
 
-
-  adjustHome(){
-    const element = document.querySelector("#container");
-    console.log(element);
-  }
 }
 
 

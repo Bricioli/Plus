@@ -1,5 +1,9 @@
 table {
   width: 100%;
+
+  .name{
+    width: 70% !important;
+  }
 }
 
 .mat-mdc-form-field {
@@ -8,5 +12,5 @@ table {
 }
 
 td, th {
-  width: 25%;
+  width: 15%;
 }

@@ -1,7 +1,8 @@
 @import "../../../styles/variables.scss";
 
-
 .container {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -9,47 +10,68 @@
   right: 0;
 }
 
-.events {
-  width: 300px;
-  height: 200px;
-  overflow: auto;
-}
-.mat-drawer-container{
-  background: none !important;
-}
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
-
-mat-sidenav-content{
-  mat-icon{
-    margin: 1.5rem 0 0 1rem;
-    font-size: 3rem;
-    height: 3rem;
-    width: 2rem;
-    font-weight: 100;
-    color: $terciary-color;
-
+  @media (max-width: 599px) {
+    width: 80%;
   }
 }
 
-mat-sidenav{
+mat-toolbar {
+  background-color: rgb(249 215 226);
+  color: $terciary-color;
+  font-size: 1.1rem;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+mat-sidenav {
+  background-color: rgb(249 215 226);
   width: 20rem;
-  background-color: $terciary-color;
+  border: none;
+}
 
+mat-sidenav-content {
+  display: flex;
+  justify-content: center;
 
-  mat-list{
-    padding: 1rem;
+  table-list {
+    width: 98%;
+    margin: 2rem 0rem 0rem 0rem;
+  }
 
-    mat-divider{
-      color : rgb(236, 122, 160);
-      margin: 1rem 0rem;
-    }
-    mat-icon{
-      font-size: 2rem;
-      height: 2rem;
-      width: 2rem;
-      color : rgb(235, 94, 141);
-
+  @media (min-width: 768px) {
+    table-list {
+      width: 90%;
     }
   }
 }
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
+
+
 
