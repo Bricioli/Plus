@@ -17,6 +17,10 @@
   justify-content: center;
   width: 100%;
 
+  img,h1{
+    cursor: pointer;
+  }
+
   @media (max-width: 599px) {
     width: 80%;
   }
@@ -38,6 +42,7 @@ mat-sidenav {
 mat-sidenav-content {
   display: flex;
   justify-content: center;
+  background-color: #fff;
 
 }
 

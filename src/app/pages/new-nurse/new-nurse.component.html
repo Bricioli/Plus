@@ -1,0 +1,91 @@
+<section class="new-nurse">
+  <app-form-layout
+    title="Novo Cooperado"
+    primatyBtnText="Realizar cadastro"
+    secondaryBtnText="Entre agora"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [disabledPrimaryBtn]="!cadastroForm.valid"
+  >
+    <form [formGroup]="cadastroForm">
+      <app-primary-input
+        formControlName="name"
+        inputName="name"
+        type="text"
+        label="Nome"
+        placeholder="Adriel Health Plus"
+      >
+        <mat-icon fontIcon="person"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="login"
+        inputName="login"
+        type="text"
+        label="Data de nascimento"
+        placeholder="Adriel123"
+      >
+        <mat-icon fontIcon="calendar_month"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="password"
+        type="text"
+        label="CPF"
+        placeholder="123.456.789-10"
+      >
+        <mat-icon fontIcon="description"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="passwordConfirm"
+        inputName="passwordConfirm"
+        type="text"
+        label="Coren"
+        placeholder="XXXXX-XX/DF"
+      >
+        <mat-icon fontIcon="description"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="passwordConfirm"
+        inputName="passwordConfirm"
+        type="text"
+        label="Endereço"
+        placeholder="Rua etc, 88"
+      >
+        <mat-icon fontIcon="location_on"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="passwordConfirm"
+        inputName="passwordConfirm"
+        type="text"
+        label="Telefone"
+        placeholder="(xx) xxxxx-xxxx"
+      >
+        <mat-icon fontIcon="call"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="passwordConfirm"
+        inputName="passwordConfirm"
+        type="email"
+        label="E-mail"
+        placeholder="email@email.com"
+      >
+        <mat-icon fontIcon="mail"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="passwordConfirm"
+        inputName="passwordConfirm"
+        type="text"
+        label="Pix"
+        placeholder="Chave Pix"
+      >
+        <mat-icon fontIcon="pix"></mat-icon>
+      </app-primary-input>
+    </form>
+  </app-form-layout>
+</section>

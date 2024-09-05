@@ -6,6 +6,8 @@ import { PrimaryInputComponent } from '../../components/primary-input/primary-in
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
+import {MatIconModule} from '@angular/material/icon';
+
 
 interface CadastroForm{
   name: FormControl,
@@ -15,18 +17,19 @@ interface CadastroForm{
 }
 
 @Component({
-  selector: 'app-cadastro',
+  selector: 'app-new-nurse',
   standalone: true,
   imports: [
     FormLayoutComponent,
     ReactiveFormsModule,
-    PrimaryInputComponent
+    PrimaryInputComponent,
+    MatIconModule
   ],
   providers: [LoginService],
-  templateUrl: './cadastro.component.html',
-  styleUrl: './cadastro.component.scss'
+  templateUrl: './new-nurse.component.html',
+  styleUrl: './new-nurse.component.scss'
 })
-export class cadastroComponent {
+export class NewNurseComponent {
   cadastroForm!: FormGroup<CadastroForm>;
 
   constructor(

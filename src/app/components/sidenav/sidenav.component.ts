@@ -44,5 +44,6 @@ export class Sidenav implements OnDestroy {
   navigate(where: string): void {
     if (where === "home") { this.router.navigate(["home/list"]); }
     else if (where === "new-user") { this.router.navigate(["home/new-user"]); }
+    else if (where === "cooper") { this.router.navigate(["home/new-nurse"]); }
   }
 }

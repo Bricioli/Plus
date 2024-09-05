@@ -3,7 +3,7 @@
     <button mat-icon-button (click)="snav.toggle()">
       <mat-icon fontIcon="menu"></mat-icon>
     </button>
-    <div class="home">
+    <div (click)="navigate('home')" class="home">
       <img src="../favicon.ico" alt="Icone Health Plus" class="icon-health" />
       <h1>{{ title }}</h1>
     </div>
@@ -11,7 +11,7 @@
 
   <mat-sidenav-container
     class="sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+    [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
   >
     <mat-sidenav
       #snav
