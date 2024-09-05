@@ -7,16 +7,16 @@
     <mat-toolbar>
       <span>Cooperados</span>
     </mat-toolbar>
-    <table mat-table [dataSource]="dataSource" matSort>
+    <table mat-table [dataSource]="dataSource">
       <!-- ID Column -->
       <ng-container matColumnDef="name">
-        <th class="name" mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+        <th class="name" mat-header-cell *matHeaderCellDef>Nome</th>
         <td class="name" mat-cell *matCellDef="let row">{{ row.name }}</td>
       </ng-container>
 
       <!-- Progress Column -->
       <ng-container matColumnDef="worked">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        <th mat-header-cell *matHeaderCellDef>
           Horas Trabalhadas
         </th>
         <td mat-cell *matCellDef="let row">{{ row.worked }}</td>
@@ -24,7 +24,7 @@
 
       <!-- Name Column -->
       <ng-container matColumnDef="receive">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>À Receber</th>
+        <th mat-header-cell *matHeaderCellDef>À Receber</th>
         <td mat-cell *matCellDef="let row">{{ row.receive }}</td>
       </ng-container>
 
@@ -39,9 +39,6 @@
       </tr>
     </table>
 
-    <mat-paginator
-      [pageSizeOptions]="[10]"
-      aria-label="Selecionar a pagina"
-    ></mat-paginator>
+
   </div>
 </section>
