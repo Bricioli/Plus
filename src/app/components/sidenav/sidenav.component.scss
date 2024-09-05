@@ -17,6 +17,10 @@
   justify-content: center;
   width: 100%;
 
+  img,h1{
+    cursor: pointer;
+  }
+
   @media (max-width: 599px) {
     width: 80%;
   }
@@ -38,18 +42,10 @@ mat-sidenav {
 mat-sidenav-content {
   display: flex;
   justify-content: center;
+  background-color: #fff;
 
-  table-list {
-    width: 98%;
-    margin: 2rem 0rem 0rem 0rem;
-  }
-
-  @media (min-width: 768px) {
-    table-list {
-      width: 90%;
-    }
-  }
 }
+
 
 .example-is-mobile .example-toolbar {
   position: fixed;

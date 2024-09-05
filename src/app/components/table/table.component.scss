@@ -8,11 +8,17 @@ table {
     width: 70% !important;
   }
 }
+
+#table-list{
+  width: 90vw;
+  margin-top: 2rem;
+}
 mat-toolbar{
   background-color: $terciary-bg;
   color: $terciary-color;
   font-weight: bold;
 }
+
 .mat-mdc-form-field {
   font-size: 14px;
   width: 100%;

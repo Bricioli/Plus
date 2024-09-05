@@ -15,4 +15,8 @@ export class NursesService {
   getNurses(): Observable<nurseResponse[]> {
     return this.httpClient.get<nurseResponse[]>(this.apiUrl + '/nurse');
   }
+
+  register(name: string, birthday: string, cpf : string, coren : string, adress : string, phone : string, email : string, pix : string) {
+    return this.httpClient.post(this.apiUrl + "/nurse" , { name, birthday, cpf, coren, adress, phone, email, pix})
+  }
 }

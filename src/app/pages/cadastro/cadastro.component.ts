@@ -1,6 +1,6 @@
 import { RegisterService } from './../../services/register.service';
 import { Component } from '@angular/core';
-import { LoginLayoutComponent } from '../../components/login-layout/login-layout.component';
+import { FormLayoutComponent } from '../../components/form-layout/form-layout.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ interface CadastroForm{
   selector: 'app-cadastro',
   standalone: true,
   imports: [
-    LoginLayoutComponent,
+    FormLayoutComponent,
     ReactiveFormsModule,
     PrimaryInputComponent
   ],
