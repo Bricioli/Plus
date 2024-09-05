@@ -39,17 +39,8 @@ mat-sidenav-content {
   display: flex;
   justify-content: center;
 
-  table-list {
-    width: 98%;
-    margin: 2rem 0rem 0rem 0rem;
-  }
-
-  @media (min-width: 768px) {
-    table-list {
-      width: 90%;
-    }
-  }
 }
+
 
 .example-is-mobile .example-toolbar {
   position: fixed;

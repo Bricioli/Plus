@@ -18,21 +18,18 @@
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
-
     >
-      <mat-nav-list >
-        @for (nav of fillerNav; track nav) {
-        <a mat-list-item routerLink=".">{{ nav }}</a>
-        }
+      <mat-nav-list>
+        <a mat-list-item (click)="navigate('home')" (click)="snav.toggle()">Inicio</a>
+        <a mat-list-item (click)="navigate('cooper')" (click)="snav.toggle()">Novo Coperado</a>
+        <a mat-list-item (click)="navigate('new-user')" (click)="snav.toggle()">Novo Usuario</a>
+        <a mat-list-item (click)="logout()">Sair</a>
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <table-list></table-list>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
+
   </mat-sidenav-container>
 </div>
-
-<!-- Copyright 2024 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at https://angular.io/license -->
