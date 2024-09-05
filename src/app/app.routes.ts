@@ -23,7 +23,7 @@ export const routes: Routes = [
       { path: 'list', component: TableList },
       { path: 'new-user', component: cadastroComponent },
       { path: 'new-nurse', component: NewNurseComponent }
-    ]
-    //canActivate: [AuthGuard]
+    ],
+    canActivate: [AuthGuard]
   },
 ];
