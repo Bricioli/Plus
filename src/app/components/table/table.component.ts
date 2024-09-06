@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 export interface NurseData {
+  id : string;
   name: string;
   birthday: string;
   cpf: string;
@@ -57,7 +58,7 @@ export class TableList implements OnInit {
 
   navigate(nav : string, id : string) {
     console.log(id);
-    if (nav === "home") { }
+    if (nav === "new") { this.router.navigate(["home/new-nurse"]); }
     else if (nav === "info") { this.router.navigate(["home/nurse-info", {id}]); }
 
   }

@@ -1,9 +1,8 @@
 <section class="nurse-info">
   <app-form-layout
     title=" Dados de {{ nurseInfo[0].name }}"
-    primatyBtnText="Realizar cadastro"
+    primatyBtnText="Atualizar cadastro"
     (submit)="submit()"
-    (navigate)="navigate()"
     [disabledPrimaryBtn]="!cadastroForm.valid"
   >
     <form [formGroup]="cadastroForm">
@@ -96,12 +95,33 @@
       </app-primary-input>
 
       <app-primary-input
+      formControlName="newHours"
+      inputName="newHours"
+      type="number"
+      label="Lançar Horas"
+      placeholder="Lançar Horas"
+    >
+      <mat-icon (click)="addHours()" fontIcon="add-circle"></mat-icon>
+    </app-primary-input>
+
+      <app-primary-input
+        formControlName="wValue"
+        inputName="wValue"
+        type="number"
+        label="Valor da Hora"
+        placeholder="Valor da Hora"
+      >
+        <mat-icon fontIcon="work"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
         formControlName="worked"
         inputName="worked"
-        type="text"
+        type="number"
         label="Horas Trabalhadas"
         placeholder="x Horas"
         value="{{ nurseInfo[0].worked }}"
+        [disabled]="true"
       >
         <mat-icon fontIcon="work"></mat-icon>
       </app-primary-input>
@@ -109,10 +129,12 @@
       <app-primary-input
         formControlName="receive"
         inputName="receive"
-        type="text"
+        type="number"
         label="À Receber"
         placeholder="R$xx"
         value="{{ nurseInfo[0].receive }}"
+
+
       >
         <mat-icon fontIcon="paid"></mat-icon>
       </app-primary-input>

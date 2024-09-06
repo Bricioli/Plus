@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { NursesService } from '../../services/nurses.service';
 import { nurseResponse } from '../../types/nurse-response.type';
@@ -7,6 +7,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FormLayoutComponent } from '../../components/form-layout/form-layout.component';
 import { MatIconModule } from '@angular/material/icon';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
+import {MatInputModule} from '@angular/material/input';
+import { ToastrService } from 'ngx-toastr';
+
 
 interface CadastroForm {
   name: FormControl,
@@ -17,6 +20,10 @@ interface CadastroForm {
   phone: FormControl,
   email: FormControl,
   pix: FormControl,
+  newHours: FormControl,
+  worked: FormControl,
+  wValue : FormControl,
+  receive: FormControl
 }
 
 @Component({
@@ -26,7 +33,8 @@ interface CadastroForm {
     FormLayoutComponent,
     ReactiveFormsModule,
     PrimaryInputComponent,
-    MatIconModule
+    MatIconModule,
+    MatInputModule
   ],
   templateUrl: './nurse-info.component.html',
   styleUrl: './nurse-info.component.scss'
@@ -35,6 +43,7 @@ export class NurseInfoComponent implements OnInit {
   cadastroForm!: FormGroup<CadastroForm>;
   nurseInfo: nurseResponse[] = [
     {
+      id : '',
       name: '',
       birthday: '',
       cpf: '',
@@ -47,9 +56,12 @@ export class NurseInfoComponent implements OnInit {
       receive : 0
     }
   ];
+  disable: boolean= true;
 
   constructor(
+    private router : Router,
     private route: ActivatedRoute,
+    private toastService : ToastrService,
     private nurseService: NursesService
   ) {
     this.cadastroForm = new FormGroup({
@@ -61,6 +73,10 @@ export class NurseInfoComponent implements OnInit {
       phone: new FormControl('', [Validators.required, Validators.minLength(11)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       pix: new FormControl('', [Validators.required]),
+      newHours: new FormControl('', [Validators.required]),
+      wValue: new FormControl('', [Validators.required]),
+      worked: new FormControl('', [Validators.required]),
+      receive: new FormControl('', [Validators.required]),
     })
   }
 
@@ -75,9 +91,27 @@ export class NurseInfoComponent implements OnInit {
   }
 
   submit() {
-
+    this.nurseService.update(this.nurseInfo[0].id, this.cadastroForm.value.name, this.cadastroForm.value.birthday, this.cadastroForm.value.cpf, this.cadastroForm.value.coren, this.cadastroForm.value.adress, this.cadastroForm.value.phone, this.cadastroForm.value.email, this.cadastroForm.value.pix, this.cadastroForm.value.worked, this.cadastroForm.value.receive).subscribe({
+      next: (response) => {this.toastService.success('Cadastro atualizado com sucesso')
+        this.router.navigate(["home"]);
+      },
+      error: () => this.toastService.error('Algo de errado aconteceu, tente novamente mais tarde')
+    })
   }
-  navigate() {
 
+  addHours(){
+    const newHours = this.cadastroForm.value.newHours
+    const workedHours = this.cadastroForm.value.worked || 0
+    const totalHours = parseInt(newHours) + parseInt(workedHours);
+    this.cadastroForm.patchValue({worked: totalHours});
+    this.receive (totalHours);
+  }
+
+  receive (totalHours : number) {
+    const wValue = parseFloat(this.cadastroForm.value.wValue)
+    console.log(' valor da Hora ' + wValue);
+    const receive = totalHours * wValue
+    this.cadastroForm.patchValue({receive: receive});
+    console.log(' valor a receber' + receive);
   }
 }

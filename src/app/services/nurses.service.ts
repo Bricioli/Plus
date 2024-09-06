@@ -24,5 +24,7 @@ export class NursesService {
     return this.httpClient.post(this.apiUrl + "/nurse" , { name, birthday, cpf, coren, adress, phone, email, pix})
   }
 
-
+  update(id: string, name: string, birthday: string, cpf : string, coren : string, adress : string, phone : string, email : string, pix : string, worked : string, receive : number) {
+    return this.httpClient.put(this.apiUrl + "/nurse-update" , { id, name, birthday, cpf, coren, adress, phone, email, pix, worked, receive})
+  }
 }
