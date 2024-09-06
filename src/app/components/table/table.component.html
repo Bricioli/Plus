@@ -1,8 +1,14 @@
 <section id="table-list">
-  <mat-form-field>
-    <mat-label>Procurar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Luna" #input />
-  </mat-form-field>
+  <div class="search">
+    <button mat-fab extended (click)="navigate('home', '')">
+      <mat-icon>add_circle</mat-icon>
+      <span>Novo Coperado</span>
+    </button>
+    <mat-form-field color="accent">
+      <mat-label>Procurar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Luna" #input />
+    </mat-form-field>
+  </div>
   <div class="mat-elevation-z3">
     <mat-toolbar>
       <span>Cooperados</span>
@@ -16,9 +22,7 @@
 
       <!-- Progress Column -->
       <ng-container matColumnDef="worked">
-        <th mat-header-cell *matHeaderCellDef>
-          Horas Trabalhadas
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Horas Trabalhadas</th>
         <td mat-cell *matCellDef="let row">{{ row.worked }}</td>
       </ng-container>
 
@@ -29,16 +33,14 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr mat-row (click)="navigate('info', row.id)"  *matRowDef="let row; columns: displayedColumns"> </tr>
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">
-          Nenhum dado encontrado com a busca:  "{{ input.value }}"
+          Nenhum dado encontrado com a busca: "{{ input.value }}"
         </td>
       </tr>
     </table>
-
-
   </div>
 </section>

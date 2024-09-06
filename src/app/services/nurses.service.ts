@@ -16,7 +16,13 @@ export class NursesService {
     return this.httpClient.get<nurseResponse[]>(this.apiUrl + '/nurse');
   }
 
+  getNurseById(id : string): Observable<nurseResponse[]> {
+    return this.httpClient.post<nurseResponse[]>(this.apiUrl + '/nurse-info', {id});
+  }
+
   register(name: string, birthday: string, cpf : string, coren : string, adress : string, phone : string, email : string, pix : string) {
     return this.httpClient.post(this.apiUrl + "/nurse" , { name, birthday, cpf, coren, adress, phone, email, pix})
   }
+
+
 }

@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { TableList } from './components/table/table.component';
 import { NewNurseComponent } from './pages/new-nurse/new-nurse.component';
+import { NurseInfoComponent } from './pages/nurse-info/nurse-info.component';
 
 export const routes: Routes = [
   {
@@ -22,7 +23,8 @@ export const routes: Routes = [
       { path: '', component: TableList },
       { path: 'list', component: TableList },
       { path: 'new-user', component: cadastroComponent },
-      { path: 'new-nurse', component: NewNurseComponent }
+      { path: 'new-nurse', component: NewNurseComponent },
+      { path: 'nurse-info', component: NurseInfoComponent }
     ],
     canActivate: [AuthGuard]
   },

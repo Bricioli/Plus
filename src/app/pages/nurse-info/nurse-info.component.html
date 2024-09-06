@@ -1,0 +1,121 @@
+<section class="nurse-info">
+  <app-form-layout
+    title=" Dados de {{ nurseInfo[0].name }}"
+    primatyBtnText="Realizar cadastro"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [disabledPrimaryBtn]="!cadastroForm.valid"
+  >
+    <form [formGroup]="cadastroForm">
+      <app-primary-input
+        formControlName="name"
+        inputName="name"
+        type="text"
+        label="Nome"
+        placeholder="Adriel Health Plus"
+        value="{{ nurseInfo[0].name }}"
+      >
+        <mat-icon fontIcon="person"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="birthday"
+        inputName="birthday"
+        type="date"
+        label="Data de nascimento"
+        placeholder="11/11/1111"
+        value="{{ nurseInfo[0].birthday }}"
+      >
+        <mat-icon fontIcon="calendar_month"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="cpf"
+        inputName="cpf"
+        type="text"
+        label="CPF"
+        placeholder="123.456.789-10"
+        value="{{ nurseInfo[0].cpf }}"
+      >
+        <mat-icon fontIcon="description"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="coren"
+        inputName="coren"
+        type="text"
+        label="Coren"
+        placeholder="XXXXX-XX/DF"
+        value="{{ nurseInfo[0].coren }}"
+      >
+        <mat-icon fontIcon="description"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="adress"
+        inputName="adress"
+        type="text"
+        label="Endereço"
+        placeholder="Rua etc, 88"
+        value="{{ nurseInfo[0].adress }}"
+      >
+        <mat-icon fontIcon="location_on"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="phone"
+        inputName="phone"
+        type="text"
+        label="Telefone"
+        placeholder="(xx) xxxxx-xxxx"
+        value="{{ nurseInfo[0].phone }}"
+      >
+        <mat-icon fontIcon="call"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="email"
+        inputName="email"
+        type="email"
+        label="E-mail"
+        placeholder="email@email.com"
+        value="{{ nurseInfo[0].email }}"
+      >
+        <mat-icon fontIcon="mail"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="pix"
+        inputName="pix"
+        type="text"
+        label="Pix"
+        placeholder="Chave Pix"
+        value="{{ nurseInfo[0].pix }}"
+      >
+        <mat-icon fontIcon="pix"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="worked"
+        inputName="worked"
+        type="text"
+        label="Horas Trabalhadas"
+        placeholder="x Horas"
+        value="{{ nurseInfo[0].worked }}"
+      >
+        <mat-icon fontIcon="work"></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="receive"
+        inputName="receive"
+        type="text"
+        label="À Receber"
+        placeholder="R$xx"
+        value="{{ nurseInfo[0].receive }}"
+      >
+        <mat-icon fontIcon="paid"></mat-icon>
+      </app-primary-input>
+    </form>
+  </app-form-layout>
+</section>

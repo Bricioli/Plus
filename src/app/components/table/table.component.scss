@@ -1,24 +1,46 @@
 @import "../../../styles/variables.scss";
 
-
 table {
   width: 100%;
 
-  th{
+  th {
     font-size: 1.1rem;
     color: #ec96b2;
   }
 
-  .name{
+  .name {
     width: 70% !important;
   }
 }
 
-#table-list{
+#table-list {
   width: 90vw;
   margin-top: 2rem;
+  .search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+      border-radius: 0.5rem;
+      height: 6vh;
+      margin-right: 1rem;
+      padding: 1rem;
+      justify-content: space-between;
+      width: 8.62rem;
+
+      mat-icon{
+        margin-right: 0rem;
+      }
+      
+      span{
+        margin-left: -1rem;
+      }
+
+    }
+  }
 }
-mat-toolbar{
+mat-toolbar {
   background-color: $terciary-bg;
   color: $terciary-color;
   font-weight: bold;
@@ -29,6 +51,7 @@ mat-toolbar{
   width: 100%;
 }
 
-td, th {
+td,
+th {
   width: 15%;
 }

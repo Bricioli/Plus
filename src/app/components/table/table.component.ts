@@ -8,6 +8,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NursesService } from '../../services/nurses.service';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+
 
 
 export interface NurseData {
@@ -28,14 +33,14 @@ export interface NurseData {
   styleUrl: 'table.component.scss',
   templateUrl: 'table.component.html',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatCardModule, MatToolbarModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatCardModule, MatToolbarModule, MatButtonModule, MatIconModule],
 })
 export class TableList implements OnInit {
   displayedColumns: string[] = ['name', 'worked', 'receive'];
   dataSource: MatTableDataSource<NurseData>
 
 
-  constructor(private nurseService : NursesService) {
+  constructor(private nurseService: NursesService, private router: Router) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -48,5 +53,12 @@ export class TableList implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  navigate(nav : string, id : string) {
+    console.log(id);
+    if (nav === "home") { }
+    else if (nav === "info") { this.router.navigate(["home/nurse-info", {id}]); }
+
   }
 }
