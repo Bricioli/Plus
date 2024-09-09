@@ -37,7 +37,7 @@ export interface NurseData {
   imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, MatCardModule, MatToolbarModule, MatButtonModule, MatIconModule],
 })
 export class TableList implements OnInit {
-  displayedColumns: string[] = ['name', 'worked', 'receive'];
+  displayedColumns: string[] = ['name', 'receive', 'action'];
   dataSource: MatTableDataSource<NurseData>
 
 

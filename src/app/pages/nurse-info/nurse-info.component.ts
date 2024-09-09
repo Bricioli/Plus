@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 
 interface CadastroForm {
+  id : FormControl;
   name: FormControl;
   birthday: FormControl;
   cpf: FormControl;
@@ -70,6 +71,7 @@ export class NurseInfoComponent implements OnInit {
     private nurseService: NursesService
   ) {
     this.cadastroForm = new FormGroup({
+      id : new FormControl(''),
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       birthday: new FormControl('', [Validators.required]),
       cpf: new FormControl('', [Validators.required, Validators.minLength(11)]),
@@ -113,7 +115,7 @@ export class NurseInfoComponent implements OnInit {
         this.cadastroForm.value.phone,
         this.cadastroForm.value.email,
         this.cadastroForm.value.pix,
-        this.cadastroForm.value.worked,
+        this.cadastroForm.value.worked.toString(),
         this.cadastroForm.value.receive
       )
       .subscribe({
@@ -140,7 +142,10 @@ export class NurseInfoComponent implements OnInit {
     const workedShifts =  count === 1 ? parseInt(this.nurseInfo[0].worked) : parseInt(this.cadastroForm.value.worked);
     const totalShifts = parseInt(newShift) + workedShifts;
     const totalReceives = (receive) + ( newShift * shiftValue );
+
     this.cadastroForm.patchValue({ receive: totalReceives });
     this.cadastroForm.patchValue({ worked: totalShifts });
+
+
   }
 }

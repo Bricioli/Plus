@@ -4,24 +4,30 @@ table {
   width: 100%;
 
   th {
-    font-size: 1.1rem;
     color: #ec96b2;
   }
 
   .name {
-    width: 70% !important;
+    width: 80% !important;
   }
 }
 
 #table-list {
   width: 90vw;
   margin-top: 2rem;
+
+  .btn-action {
+    height: 4vh;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
   .search {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    button {
+    .btn-new-coop {
       border-radius: 0.5rem;
       height: 6vh;
       margin-right: 1rem;
@@ -29,14 +35,13 @@ table {
       justify-content: space-between;
       width: 8.62rem;
 
-      mat-icon{
+      mat-icon {
         margin-right: 0rem;
       }
-      
-      span{
+
+      span {
         margin-left: -1rem;
       }
-
     }
   }
 }
@@ -53,5 +58,5 @@ mat-toolbar {
 
 td,
 th {
-  width: 15%;
+  width: 10%;
 }
