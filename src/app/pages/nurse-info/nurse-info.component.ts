@@ -167,7 +167,7 @@ export class NurseInfoComponent implements OnInit {
     const currentObs = this.cadastroForm.value.obs;
     const currentDate = new Date();
     const dateString = currentDate.toLocaleDateString('pt-BR');
-    const updateObs = currentObs ? `${currentObs} \nPlantão lançado no dia ${dateString} com o valor de:  R$${shiftValue}` : `Plantão lançado no dia ${dateString} com o valor de: R$${shiftValue}`
+    const updateObs = currentObs ? `${currentObs} \n- Plantão lançado no dia ${dateString} com o valor de:  R$${shiftValue}` : `- Plantão lançado no dia ${dateString} com o valor de: R$${shiftValue}`
 
     this.cadastroForm.patchValue({ obs: updateObs });
 
