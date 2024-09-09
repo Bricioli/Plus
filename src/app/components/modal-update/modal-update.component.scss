@@ -1,0 +1,24 @@
+@import "../../../styles/variables.scss";
+
+h2 {
+  text-align: center;
+  color: $terciary-color !important;
+  font-family: "Josefin Sans", sans-serif !important;
+  font-size: 1.8rem !important;
+}
+
+form {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0rem 2rem 0rem;
+  width: 18rem;
+
+  .add {
+    cursor: pointer;
+  }
+
+  mat-form-field{
+    display: none !important;
+  }
+}

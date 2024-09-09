@@ -32,6 +32,10 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
+
+          <button class="btn-action" mat-fab (click)="openDialog(row.id, row.name, row.birthday, row.cpf, row.coren, row.adress, row.phone, row.email, row.pix, row.worked,row.receive, row.obs)">
+            <mat-icon>add-circle</mat-icon>
+          </button>
           <button class="btn-action" mat-fab (click)="navigate('info', row.id)">
             <mat-icon>edit</mat-icon>
           </button>

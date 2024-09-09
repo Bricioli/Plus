@@ -95,35 +95,17 @@
       </app-primary-input>
 
       <app-primary-input
-      formControlName="shift"
-      inputName="shift"
-      type="number"
-      label="Lançar Plantão"
-      placeholder="Lançar Plantão"
-    >
-      <mat-icon (click)="counter() " fontIcon="add-circle"></mat-icon>
-    </app-primary-input>
-
-      <app-primary-input
         formControlName="shiftValue"
         inputName="shiftValue"
         type="number"
-        label="Valor do Plantão"
+        label="Lançar Plantão"
         placeholder="Valor do Plantão"
       >
-        <mat-icon fontIcon="work"></mat-icon>
-      </app-primary-input>
-
-      <app-primary-input
-        formControlName="worked"
-        inputName="worked"
-        type="number"
-        label="Plantões Trabalhadas"
-        placeholder="x Plantões"
-        value="{{ nurseInfo[0].worked }}"
-        [disabled]="true"
-      >
-        <mat-icon fontIcon="work"></mat-icon>
+        <mat-icon
+          (click)="addShift(1)"
+          style="cursor: pointer"
+          fontIcon="add"
+        ></mat-icon>
       </app-primary-input>
 
       <app-primary-input
@@ -137,6 +119,21 @@
       >
         <mat-icon fontIcon="paid"></mat-icon>
       </app-primary-input>
+
+      <mat-form-field color="accent" class="example-full-width">
+        <mat-label>Observações</mat-label>
+        <textarea
+          formControlName="obs"
+          inputName="obs"
+          matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="10"
+          placeholder=""
+          value="{{ nurseInfo[0].obs }}"
+        ></textarea>
+      </mat-form-field>
     </form>
   </app-form-layout>
 </section>

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { afterNextRender, Component, inject, Injector, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { NursesService } from '../../services/nurses.service';
 import { nurseResponse } from '../../types/nurse-response.type';
+import {CdkTextareaAutosize, TextFieldModule} from '@angular/cdk/text-field';
 import {
   FormControl,
   FormGroup,
@@ -25,10 +26,9 @@ interface CadastroForm {
   phone: FormControl;
   email: FormControl;
   pix: FormControl;
-  shift: FormControl;
-  worked: FormControl;
   shiftValue: FormControl;
   receive: FormControl;
+  obs: FormControl;
 }
 
 @Component({
@@ -40,6 +40,7 @@ interface CadastroForm {
     PrimaryInputComponent,
     MatIconModule,
     MatInputModule,
+    TextFieldModule
   ],
   templateUrl: './nurse-info.component.html',
   styleUrl: './nurse-info.component.scss',
@@ -57,12 +58,17 @@ export class NurseInfoComponent implements OnInit {
       phone: '',
       email: '',
       pix: '',
-      worked: '',
       receive: 0,
+      obs: ''
     },
   ];
   disable: boolean = true;
   count: number = 0;
+
+  private _injector = inject(Injector);
+  @ViewChild('autosize')
+  autosize!: CdkTextareaAutosize;
+
 
   constructor(
     private router: Router,
@@ -76,30 +82,20 @@ export class NurseInfoComponent implements OnInit {
     if (nurseId) {
       this.nurseService.getNurseById(nurseId).subscribe((nurse) => {
         this.nurseInfo = nurse;
-        this.cadastroForm = new FormGroup({
+        this.cadastroForm = new FormGroup({ //isso não ta legal e nem certo, refatorar depois
 
           id: new FormControl(this.nurseInfo[0].id),
-          name: new FormControl(this.nurseInfo[0].name, [
-            Validators.required,
-            Validators.minLength(3),
-          ]),
+          name: new FormControl(this.nurseInfo[0].name, [Validators.required,Validators.minLength(3)]),
           birthday: new FormControl(this.nurseInfo[0].birthday, [Validators.required]),
           cpf: new FormControl(this.nurseInfo[0].cpf, [Validators.required, Validators.minLength(11)]),
-          coren: new FormControl(this.nurseInfo[0].coren, [
-            Validators.required,
-            Validators.minLength(10),
-          ]),
+          coren: new FormControl(this.nurseInfo[0].coren, [Validators.required,Validators.minLength(10)]),
           adress: new FormControl(this.nurseInfo[0].adress, [Validators.required]),
-          phone: new FormControl(this.nurseInfo[0].phone, [
-            Validators.required,
-            Validators.minLength(11),
-          ]),
+          phone: new FormControl(this.nurseInfo[0].phone, [Validators.required,Validators.minLength(11)]),
           email: new FormControl(this.nurseInfo[0].email, [Validators.required, Validators.email]),
           pix: new FormControl(this.nurseInfo[0].pix, [Validators.required]),
-          shift: new FormControl(''),
           shiftValue: new FormControl(''),
-          worked: new FormControl(this.nurseInfo[0].worked, [Validators.required]),
           receive: new FormControl(this.nurseInfo[0].receive, [Validators.required]),
+          obs: new FormControl(this.nurseInfo[0].obs),
         });
       });
     }
@@ -121,8 +117,8 @@ export class NurseInfoComponent implements OnInit {
         this.cadastroForm.value.phone,
         this.cadastroForm.value.email,
         this.cadastroForm.value.pix,
-        this.cadastroForm.value.worked.toString(),
-        this.cadastroForm.value.receive
+        this.cadastroForm.value.receive,
+        this.cadastroForm.value.obs
       )
       .subscribe({
         next: (response) => {
@@ -142,20 +138,38 @@ export class NurseInfoComponent implements OnInit {
   }
 
   addShift(count: number) {
-    const newShift = this.cadastroForm.value.shift;
     const shiftValue = parseInt(this.cadastroForm.value.shiftValue);
     const receive =
       count === 1
         ? parseInt(this.nurseInfo[0].receive.toString())
         : parseInt(this.cadastroForm.value.receive);
-    const workedShifts =
-      count === 1
-        ? parseInt(this.nurseInfo[0].worked)
-        : parseInt(this.cadastroForm.value.worked);
-    const totalShifts = parseInt(newShift) + workedShifts;
-    const totalReceives = receive + newShift * shiftValue;
+    const totalReceives = receive + shiftValue;
 
     this.cadastroForm.patchValue({ receive: totalReceives });
-    this.cadastroForm.patchValue({ worked: totalShifts });
+
+    this.addObs(shiftValue);
+  }
+
+
+  triggerResize() {
+    // Wait for content to render, then trigger textarea resize.
+    afterNextRender(
+      () => {
+        this.autosize.resizeToFitContent(true);
+      },
+      {
+        injector: this._injector,
+      },
+    );
+  }
+
+  addObs(shiftValue : number) {
+    const currentObs = this.cadastroForm.value.obs;
+    const currentDate = new Date();
+    const dateString = currentDate.toLocaleDateString('pt-BR');
+    const updateObs = currentObs ? `${currentObs} \nPlantão lançado no dia ${dateString} com o valor de:  R$${shiftValue}` : `Plantão lançado no dia ${dateString} com o valor de: R$${shiftValue}`
+
+    this.cadastroForm.patchValue({ obs: updateObs });
+
   }
 }

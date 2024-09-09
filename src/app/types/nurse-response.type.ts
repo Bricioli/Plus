@@ -8,6 +8,6 @@ export type nurseResponse = {
   phone: string;
   email: string;
   pix: string;
-  worked: string;
   receive: number;
+  obs: string;
 }

@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>Lançar Plantão</h2>
+<mat-dialog-content>
+  <section class="nurse-info">
+    <app-form-layout
+      title="{{ data.nome}}"
+      primatyBtnText="Lançar Plantão"
+      (submit)="submit()"
+      [disabledPrimaryBtn]="!shiftForm.valid"
+    >
+      <form [formGroup]="shiftForm">
+        <app-primary-input
+          formControlName="shiftValue"
+          inputName="shiftValue"
+          type="number"
+          label="Valor do Plantão"
+          placeholder="Valor do Plantão"
+        >
+          <mat-icon class="add" fontIcon="add" (click)="addShift()"></mat-icon>
+        </app-primary-input>
+
+        <app-primary-input
+          formControlName="receive"
+          inputName="receive"
+          type="number"
+          label="À Receber"
+          placeholder="R$xx"
+          value="{{ data.receive }}"
+          [disabled]="true"
+        >
+          <mat-icon fontIcon="paid"></mat-icon>
+        </app-primary-input>
+
+        <mat-form-field color="accent" class="example-full-width">
+          <mat-label>Observações</mat-label>
+          <textarea
+            formControlName="obs"
+            inputName="obs"
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="10"
+            placeholder=""
+            value="{{ data.obs }}"
+          ></textarea>
+        </mat-form-field>
+      </form>
+    </app-form-layout>
+  </section>
+</mat-dialog-content>

@@ -5,7 +5,7 @@
   font-size: 1rem;
   text-align: start;
 
-  label{
+  label {
     margin-bottom: 0.7rem;
   }
 
@@ -18,6 +18,10 @@
       padding: 1rem;
       border-radius: 0 0.5rem 0.5rem 0;
       background-color: $terciary-color;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      color: #fff;
 
       img {
         height: 20px;
