@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ToastrService } from 'ngx-toastr';
 
 interface CadastroForm {
-  id : FormControl;
+  id: FormControl;
   name: FormControl;
   birthday: FormControl;
   cpf: FormControl;
@@ -45,7 +45,7 @@ interface CadastroForm {
   styleUrl: './nurse-info.component.scss',
 })
 export class NurseInfoComponent implements OnInit {
-  cadastroForm!: FormGroup<CadastroForm>;
+  cadastroForm!: FormGroup<CadastroForm>
   nurseInfo: nurseResponse[] = [
     {
       id: '',
@@ -70,37 +70,43 @@ export class NurseInfoComponent implements OnInit {
     private toastService: ToastrService,
     private nurseService: NursesService
   ) {
-    this.cadastroForm = new FormGroup({
-      id : new FormControl(''),
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      birthday: new FormControl('', [Validators.required]),
-      cpf: new FormControl('', [Validators.required, Validators.minLength(11)]),
-      coren: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10),
-      ]),
-      adress: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [
-        Validators.required,
-        Validators.minLength(11),
-      ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      pix: new FormControl('', [Validators.required]),
-      shift: new FormControl(''),
-      shiftValue: new FormControl(''),
-      worked: new FormControl('', [Validators.required]),
-      receive: new FormControl('', [Validators.required]),
-    });
-  }
 
-  ngOnInit() {
     const nurseId = this.route.snapshot.paramMap.get('id');
+
     if (nurseId) {
       this.nurseService.getNurseById(nurseId).subscribe((nurse) => {
         this.nurseInfo = nurse;
-        console.log(this.nurseInfo);
+        this.cadastroForm = new FormGroup({
+
+          id: new FormControl(this.nurseInfo[0].id),
+          name: new FormControl(this.nurseInfo[0].name, [
+            Validators.required,
+            Validators.minLength(3),
+          ]),
+          birthday: new FormControl(this.nurseInfo[0].birthday, [Validators.required]),
+          cpf: new FormControl(this.nurseInfo[0].cpf, [Validators.required, Validators.minLength(11)]),
+          coren: new FormControl(this.nurseInfo[0].coren, [
+            Validators.required,
+            Validators.minLength(10),
+          ]),
+          adress: new FormControl(this.nurseInfo[0].adress, [Validators.required]),
+          phone: new FormControl(this.nurseInfo[0].phone, [
+            Validators.required,
+            Validators.minLength(11),
+          ]),
+          email: new FormControl(this.nurseInfo[0].email, [Validators.required, Validators.email]),
+          pix: new FormControl(this.nurseInfo[0].pix, [Validators.required]),
+          shift: new FormControl(''),
+          shiftValue: new FormControl(''),
+          worked: new FormControl(this.nurseInfo[0].worked, [Validators.required]),
+          receive: new FormControl(this.nurseInfo[0].receive, [Validators.required]),
+        });
       });
     }
+  }
+
+  ngOnInit() {
+
   }
 
   submit() {
@@ -138,14 +144,18 @@ export class NurseInfoComponent implements OnInit {
   addShift(count: number) {
     const newShift = this.cadastroForm.value.shift;
     const shiftValue = parseInt(this.cadastroForm.value.shiftValue);
-    const receive = count === 1 ? parseInt(this.nurseInfo[0].receive.toString()) : parseInt(this.cadastroForm.value.receive);
-    const workedShifts =  count === 1 ? parseInt(this.nurseInfo[0].worked) : parseInt(this.cadastroForm.value.worked);
+    const receive =
+      count === 1
+        ? parseInt(this.nurseInfo[0].receive.toString())
+        : parseInt(this.cadastroForm.value.receive);
+    const workedShifts =
+      count === 1
+        ? parseInt(this.nurseInfo[0].worked)
+        : parseInt(this.cadastroForm.value.worked);
     const totalShifts = parseInt(newShift) + workedShifts;
-    const totalReceives = (receive) + ( newShift * shiftValue );
+    const totalReceives = receive + newShift * shiftValue;
 
     this.cadastroForm.patchValue({ receive: totalReceives });
     this.cadastroForm.patchValue({ worked: totalShifts });
-
-
   }
 }
