@@ -102,10 +102,20 @@
         placeholder="Valor do Plantão"
       >
         <mat-icon
-          (click)="addShift(1)"
+          (click)="counter()"
           style="cursor: pointer"
           fontIcon="add"
         ></mat-icon>
+      </app-primary-input>
+
+      <app-primary-input
+        formControlName="shiftQntd"
+        inputName="shiftQntd"
+        type="number"
+        label="Quantidade de Plantões"
+        placeholder="Quantos Plantões?"
+      >
+        <mat-icon fontIcon="tag"></mat-icon>
       </app-primary-input>
 
       <app-primary-input
@@ -129,7 +139,7 @@
           cdkTextareaAutosize
           #autosize="cdkTextareaAutosize"
           cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="10"
+          cdkAutosizeMaxRows="15"
           placeholder=""
           value="{{ nurseInfo[0].obs }}"
         ></textarea>

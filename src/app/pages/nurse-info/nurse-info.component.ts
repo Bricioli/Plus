@@ -27,6 +27,7 @@ interface CadastroForm {
   email: FormControl;
   pix: FormControl;
   shiftValue: FormControl;
+  shiftQntd: FormControl;
   receive: FormControl;
   obs: FormControl;
 }
@@ -94,6 +95,7 @@ export class NurseInfoComponent implements OnInit {
           email: new FormControl(this.nurseInfo[0].email, [Validators.required, Validators.email]),
           pix: new FormControl(this.nurseInfo[0].pix, [Validators.required]),
           shiftValue: new FormControl(''),
+          shiftQntd: new FormControl(1),
           receive: new FormControl(this.nurseInfo[0].receive, [Validators.required]),
           obs: new FormControl(this.nurseInfo[0].obs),
         });
@@ -138,16 +140,13 @@ export class NurseInfoComponent implements OnInit {
   }
 
   addShift(count: number) {
-    const shiftValue = parseInt(this.cadastroForm.value.shiftValue);
-    const receive =
-      count === 1
-        ? parseInt(this.nurseInfo[0].receive.toString())
-        : parseInt(this.cadastroForm.value.receive);
-    const totalReceives = receive + shiftValue;
-
+    const shiftValue = parseInt(this.cadastroForm.value.shiftValue) || 1;
+    const shiftQntd = parseInt(this.cadastroForm.value.shiftQntd) || 1;
+    const receive = count === 1 ? parseInt(this.nurseInfo[0].receive.toString()) : parseInt(this.cadastroForm.value.receive);
+    const totalReceives = receive + (shiftValue * shiftQntd);
     this.cadastroForm.patchValue({ receive: totalReceives });
 
-    this.addObs(shiftValue);
+    this.addObs(shiftValue, shiftQntd);
   }
 
 
@@ -163,11 +162,12 @@ export class NurseInfoComponent implements OnInit {
     );
   }
 
-  addObs(shiftValue : number) {
+  addObs(shiftValue : number, shiftQntd : number) {
     const currentObs = this.cadastroForm.value.obs;
     const currentDate = new Date();
     const dateString = currentDate.toLocaleDateString('pt-BR');
-    const updateObs = currentObs ? `${currentObs} \n- Plantão lançado no dia ${dateString} com o valor de:  R$${shiftValue}` : `- Plantão lançado no dia ${dateString} com o valor de: R$${shiftValue}`
+    const updateObs = currentObs ? `- Foram lançados ${shiftQntd} plantões no dia ${dateString} com o valor de:  R$${shiftValue},00 cada \n${currentObs}` : `- Foram lançados ${shiftQntd} plantões no dia ${dateString} com o valor de: R$${shiftValue},00 cada`
+
 
     this.cadastroForm.patchValue({ obs: updateObs });
 

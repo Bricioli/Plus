@@ -23,6 +23,7 @@ import { CdkTextareaAutosize, TextFieldModule } from '@angular/cdk/text-field';
 
 interface ShiftForm {
   shiftValue: FormControl;
+  shiftQntd : FormControl;
   receive: FormControl;
   obs : FormControl;
 }
@@ -61,24 +62,26 @@ export class ModalUpdateComponent {
   ) {
     this.shiftForm = new FormGroup({
       shiftValue: new FormControl(''),
+      shiftQntd: new FormControl(1),
       receive: new FormControl(this.data.receive, [Validators.required]),
       obs : new FormControl(this.data.obs)
     });
   }
 
   addShift() {
-    const shiftValue = parseInt(this.shiftForm.value.shiftValue);
+    const shiftValue = parseInt(this.shiftForm.value.shiftValue) || 1;
+    const shiftQntd = parseInt(this.shiftForm.value.shiftQntd) || 1;
     const receive = parseInt(this.data.receive);
-    const totalReceives = receive + shiftValue;
+    const totalReceives = receive + (shiftValue * shiftQntd);
     this.shiftForm.patchValue({ receive: totalReceives });
-    this.addObs(shiftValue)
+    this.addObs(shiftValue, shiftQntd)
   }
 
-  addObs(shiftValue : number) {
+  addObs(shiftValue : number, shiftQntd : number) {
     const currentObs = this.shiftForm.value.obs;
     const currentDate = new Date();
     const dateString = currentDate.toLocaleDateString('pt-BR');
-    const updateObs = currentObs ? `${currentObs} \n- Plantão lançado no dia ${dateString} com o valor de:  R$${shiftValue}` : `- Plantão lançado no dia ${dateString} com o valor de: R$${shiftValue}`
+    const updateObs = currentObs ? `- Foram lançados ${shiftQntd} plantões no dia ${dateString} com o valor de:  R$${shiftValue},00 cada \n${currentObs}` : `- Plantão lançado no dia ${dateString} com o valor de: R$${shiftValue}`
 
     this.shiftForm.patchValue({ obs: updateObs });
 
